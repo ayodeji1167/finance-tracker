@@ -15,7 +15,6 @@ import {
   flexRender,
   getCoreRowModel,
   useReactTable,
-  ColumnDef,
   SortingState,
   PaginationState,
 } from '@tanstack/react-table';
@@ -36,7 +35,7 @@ interface CustomTableProps<TData extends object> {
   setPagination?: (
     updater: PaginationState | ((prev: PaginationState) => PaginationState)
   ) => void;
-  columnDef: ColumnDef<TData>[];
+  columnDef: any;
   data: TData[];
   filter?: {
     tableName: string;
@@ -48,6 +47,11 @@ interface CustomTableProps<TData extends object> {
   tableFooter?: ReactNode;
   thProps?: ThProps;
   tdProps?: TdProps;
+  tableHeadColor?: string;
+  rowClickHandler?: (
+    row: any,
+    event: React.MouseEvent<HTMLTableRowElement>
+  ) => void; // Optional row click handler
 }
 
 export default function CustomTable<TData extends object>({
@@ -62,6 +66,8 @@ export default function CustomTable<TData extends object>({
   tableFooter,
   thProps,
   tdProps,
+  tableHeadColor,
+  rowClickHandler,
 }: CustomTableProps<TData>) {
   const table = useReactTable({
     columns: columnDef,
@@ -80,7 +86,7 @@ export default function CustomTable<TData extends object>({
         <Table variant="unstyled">
           <Thead>
             {table.getHeaderGroups().map((headerGroup) => (
-              <Tr key={headerGroup.id}>
+              <Tr bg={tableHeadColor} key={headerGroup.id}>
                 {headerGroup.headers.map((header, index) => (
                   <Th
                     key={header.id}
@@ -123,6 +129,9 @@ export default function CustomTable<TData extends object>({
                 mb={4}
                 borderBottom="1px solid #F7F7FF"
                 fontSize=".8rem"
+                onClick={(event) =>
+                  rowClickHandler ? rowClickHandler(row, event) : undefined
+                }
               >
                 {row.getVisibleCells().map((cell, index) => {
                   const meta = cell.column.columnDef.meta as
