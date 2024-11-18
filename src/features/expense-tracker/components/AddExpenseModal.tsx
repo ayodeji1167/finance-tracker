@@ -4,6 +4,7 @@ import CustomSelect from '@/components/input/CustomSelect';
 import CustomTextArea from '@/components/input/CustomTextArea';
 import { categories } from '@/data';
 import { ITransaction } from '@/shared/interface/transaction';
+import { setLocalStorageArray } from '@/utils/storage';
 import {
   Modal,
   ModalOverlay,
@@ -25,7 +26,7 @@ const initialData = {
   date: '',
   notes: '',
 };
-export default function AddExpenseModal() {
+export default function AddExpenseModal({ setTransactions }) {
   const { onOpen, isOpen, onClose } = useDisclosure();
   const [formData, setFormData] = useState<ITransaction>(initialData);
 
@@ -40,9 +41,13 @@ export default function AddExpenseModal() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    setLocalStorageArray('transactions', formData);
+    setTransactions((prev) => [...prev, formData]);
+
     // onSubmit(formData);
 
     setFormData(initialData);
+    onClose();
   };
   return (
     <Box>

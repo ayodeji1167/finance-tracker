@@ -1,4 +1,3 @@
-import { Logo } from '@/components/Logo/Logo';
 import { Box, Center, Spinner, Text, VisuallyHidden } from '@chakra-ui/react';
 
 type Props = {
@@ -10,7 +9,6 @@ export const LogoLoader = ({ text = 'Loading...' }: Props) => {
       <Center gap="4" h="full" w="full" flexDirection={'column'}>
         <Spinner size={'sm'} color="primary.100" />
 
-        <Logo fontSize="8xl" h="max-content" />
         <Text fontSize={'xs'} fontWeight={'semibold'} color={'primary.100'}>
           {text}
         </Text>

@@ -10,37 +10,10 @@ import {
   Flex,
   Stack,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import AddExpenseModal from './AddExpenseModal';
-
-const expenseCategories = [800, 1200, 500, 400, 600];
-const expenseChartOptions: ApexCharts.ApexOptions = {
-  chart: {
-    type: 'donut',
-  },
-  labels: ['Food', 'Business', 'Transport', 'Entertainment', 'Others'],
-  dataLabels: {
-    enabled: false,
-  },
-  plotOptions: {
-    pie: {
-      donut: {
-        size: '80%',
-        labels: {
-          show: false,
-        },
-      },
-    },
-  },
-  legend: {
-    show: false,
-  },
-  colors: ['#FFC90A', '#1DBF73', '#5654D4', '#FD8ADC', '#11428C'],
-  stroke: {
-    show: false, // Removes the border between slices
-  },
-};
+import { getLocalStorageArray } from '@/utils/storage';
 
 function Item({ color, name, value }) {
   return (
@@ -58,11 +31,49 @@ function Item({ color, name, value }) {
   );
 }
 export function Home() {
-  // Dummy data for statistics and chart
-  const stats = {
-    income: 5000,
-    expenses: 3500,
-    balance: 1500,
+  const [transactions, setTransactions] = useState(
+    getLocalStorageArray('transactions')
+  );
+  const incomeSum = transactions.reduce((sum, transaction) => {
+    return transaction.category.category === 'INCOME'
+      ? sum + transaction.amount
+      : sum;
+  }, 0);
+
+  // Calculate sum of expenses
+  const expenseSum = transactions.reduce((sum, transaction) => {
+    return transaction.category.category === 'EXPENSE'
+      ? sum + transaction.amount
+      : sum;
+  }, 0);
+  const balance = Number(incomeSum) - Number(expenseSum);
+
+  const expenseCategories = [incomeSum, expenseSum, balance];
+  const expenseChartOptions: ApexCharts.ApexOptions = {
+    chart: {
+      type: 'donut',
+    },
+    labels: ['Income', 'Expense', 'Balance'],
+    dataLabels: {
+      enabled: false,
+    },
+    plotOptions: {
+      pie: {
+        donut: {
+          size: '80%',
+          labels: {
+            show: false,
+          },
+        },
+      },
+    },
+    legend: {
+      show: false,
+    },
+    colors: ['#FFC90A', '#1DBF73', '#5654D4'],
+    stroke: {
+      show: false,
+    },
   };
 
   return (
@@ -72,26 +83,22 @@ export function Home() {
           Dashboard
         </Heading>
 
-        <AddExpenseModal />
+        <AddExpenseModal setTransactions={setTransactions} />
       </Flex>
 
       {/* Statistics Cards */}
       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={6} mb={8}>
         <StatCard
           label="Total Income"
-          value={`$${stats.income}`}
+          value={addComma(incomeSum)}
           color="green.500"
         />
         <StatCard
           label="Total Expenses"
-          value={`$${stats.expenses}`}
+          value={addComma(expenseSum)}
           color="red.500"
         />
-        <StatCard
-          label="Balance"
-          value={`$${stats.balance}`}
-          color="blue.500"
-        />
+        <StatCard label="Balance" value={addComma(balance)} color="blue.500" />
       </SimpleGrid>
 
       {/* Chart */}
@@ -134,25 +141,19 @@ export function Home() {
           </Box>
           <Stack spacing={'1rem'}>
             <Item
-              name={'Net Salary'}
-              value={addComma(2343)}
+              name={'Total Income'}
+              value={addComma(incomeSum)}
               color={'#FFC90A'}
             />
-            <Item name={'Taxes(IR)'} value={addComma(2343)} color={'#1DBF73'} />
             <Item
-              name={'CNSS(Employee)'}
-              value={addComma(2343)}
+              name={'Total Expenses'}
+              value={addComma(expenseSum)}
+              color={'#1DBF73'}
+            />
+            <Item
+              name={'Balance'}
+              value={addComma(balance)}
               color={'#5654D4'}
-            />
-            <Item
-              name={'AMO(Employer)'}
-              value={addComma(2343)}
-              color={'#FD8ADC'}
-            />
-            <Item
-              name={'CNSS(Employer)'}
-              value={addComma(2343)}
-              color={'#11428C'}
             />
           </Stack>
         </Flex>

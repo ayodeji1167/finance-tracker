@@ -1,6 +1,5 @@
 import { LogoLoader } from '@/components/elements/loader/Loader';
 import { RouteError } from '@/components/error/ErrorElement';
-import { AuthRoutes } from '@/features/auth/routes';
 import { ExpenseTrackerPageRoutes } from '@/features/expense-tracker/routes';
 import { Box } from '@chakra-ui/react';
 import { Suspense } from 'react';
@@ -21,7 +20,7 @@ export const RoutesList: RouteObject[] = [
       </Suspense>
     ),
     errorElement: <RouteError />,
-    children: [ExpenseTrackerPageRoutes, AuthRoutes],
+    children: [ExpenseTrackerPageRoutes],
   },
   {
     path: '*',
