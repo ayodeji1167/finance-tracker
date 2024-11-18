@@ -92,7 +92,7 @@ export default function CustomTable<TData extends object>({
                     key={header.id}
                     color="#101840"
                     fontSize=".8rem"
-                    fontWeight="500"
+                    fontWeight="600"
                     textTransform="capitalize"
                     px={0}
                     pt={'1rem'}

@@ -77,7 +77,7 @@ export default function CustomSelect({
             fontSize: `.875rem`,
             color: '#696F8C',
           }),
-          multiValueLabel: (styles, { data }) => ({
+          multiValueLabel: (styles, { data }: any) => ({
             ...styles,
             color: data.color,
             ...rest.styles?.multiValueLabel,

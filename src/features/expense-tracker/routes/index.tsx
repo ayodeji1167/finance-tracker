@@ -2,11 +2,8 @@ import { RouteError } from '@/components/error/ErrorElement';
 import { lazyImport } from '@/utils/lazyImports';
 import { Outlet, RouteObject } from 'react-router-dom';
 import Layout from '../components/Layout';
+import { Transactions } from '../components/transaction/Transactions';
 const { Home } = lazyImport(() => import('../components/Home'), 'Home');
-const { Transactions } = lazyImport(
-  () => import('../components/transaction/Transactions'),
-  'Transactions'
-);
 
 export const ExpenseTrackerRouteList: RouteObject[] = [
   {
