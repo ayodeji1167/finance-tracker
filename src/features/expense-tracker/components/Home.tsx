@@ -25,7 +25,7 @@ function Item({ color, name, value }) {
         </Text>
       </Flex>
       <Text fontWeight={500} fontSize={'.9rem'}>
-        {value}AED
+        {value}
       </Text>
     </Box>
   );
