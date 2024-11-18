@@ -132,7 +132,7 @@ export function Home() {
                 color={'neutral.800'}
                 fontWeight={500}
               >
-                Payroll Total Cost
+                Balance
               </Text>
               <Text textAlign={'center'} textStyle={'h-600'}>
                 {addComma(balance)}
