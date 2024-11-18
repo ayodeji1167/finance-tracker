@@ -1,14 +1,13 @@
 import { DurationType } from '@/shared/interface/time';
 import { getExpiresTime } from './getExpirationTime';
 
-const storagePrefix = 'keza_web_app__';
+const storagePrefix = 'web-3-web-app__';
 
 export type keyType =
   | 'refresh_token'
   | 'access_token'
   | 'redirect_path'
-  | 'theme'
-  | 'msw-data';
+  | 'theme';
 
 const DEFAULT_EXPIRY_DURATION: DurationType = { unit: 'DAY', value: 1 };
 
