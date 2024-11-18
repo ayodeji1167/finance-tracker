@@ -4,7 +4,7 @@ import { Outlet, RouteObject } from 'react-router-dom';
 import Layout from '../components/Layout';
 const { Home } = lazyImport(() => import('../components/Home'), 'Home');
 
-export const LandingPageRouteList: RouteObject[] = [
+export const ExpenseTrackerRouteList: RouteObject[] = [
   {
     index: true,
     element: <Home />,
@@ -16,9 +16,9 @@ const LandingPageRouteOutlet = (
     <Outlet />
   </Layout>
 );
-export const LandingPageRoutes: RouteObject = {
+export const ExpenseTrackerPageRoutes: RouteObject = {
   path: '',
   element: LandingPageRouteOutlet,
   errorElement: <RouteError />,
-  children: LandingPageRouteList,
+  children: ExpenseTrackerRouteList,
 };
