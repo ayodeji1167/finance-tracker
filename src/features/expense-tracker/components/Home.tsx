@@ -135,7 +135,7 @@ export function Home() {
                 Payroll Total Cost
               </Text>
               <Text textAlign={'center'} textStyle={'h-600'}>
-                {addComma(1223)} AED
+                {addComma(balance)}
               </Text>
             </Box>
           </Box>
