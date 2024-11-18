@@ -1,4 +1,6 @@
 import { Button } from './Button';
+import { checkboxTheme } from './Checkbox';
+import { Radio } from './Radio';
 import { Text } from './Text';
 
 export const components = {
@@ -8,5 +10,11 @@ export const components = {
 
   Text: {
     ...Text,
+  },
+  Checkbox: {
+    ...checkboxTheme,
+  },
+  Radio: {
+    ...Radio,
   },
 };

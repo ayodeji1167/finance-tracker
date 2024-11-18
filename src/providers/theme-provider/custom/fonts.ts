@@ -1,6 +1,6 @@
 const fonts = {
-  heading: `'BR Firma',sans-serif`,
-  body: `'DM Sans',sans-serif`,
+  heading: `'Geist',sans-serif`,
+  body: `'Geist',sans-serif`,
 };
 
 const fontSizes = {
@@ -70,6 +70,70 @@ const textStyles = {
   small: {
     fontSize: { base: '10px', md: '12px' },
     fontFamily: 'body',
+  },
+  'h-900': {
+    fontSize: '2rem',
+    lineHeight: '2.5rem',
+    fontWeight: 500,
+  },
+  'h-800': {
+    fontSize: '1.5rem',
+    lineHeight: '2rem',
+    fontWeight: 500,
+  },
+  'h-700': {
+    fontSize: '1.25rem',
+    lineHeight: '1.5rem',
+    fontWeight: 500,
+  },
+  'h-600': {
+    fontSize: '1.125rem',
+    lineHeight: '1.5rem',
+    fontWeight: 500,
+  },
+  'h-500': {
+    fontSize: '1rem',
+    lineHeight: '1.5rem',
+    fontWeight: 500,
+  },
+  'h-400': {
+    fontSize: '.875rem',
+    lineHeight: '1.5rem',
+    fontWeight: 500,
+  },
+  'h-300': {
+    fontSize: '.75rem',
+    lineHeight: '1rem',
+    fontWeight: 500,
+  },
+  'h-200': {
+    fontSize: '.75rem',
+    lineHeight: '1rem',
+    fontWeight: 500,
+  },
+  'h-100': {
+    fontSize: '.625rem',
+    lineHeight: '1rem',
+  },
+  'p-400': {
+    fontSize: '1rem',
+    lineHeight: '1.5rem',
+  },
+  'p-300': {
+    fontSize: '1rem',
+    lineHeight: '1.5rem',
+  },
+  'p-200': {
+    fontSize: '.875rem',
+    lineHeight: '1.25rem',
+  },
+  'p-100': {
+    fontSize: '.75rem',
+    lineHeight: '1rem',
+  },
+  'p-50': {
+    fontSize: '.9375rem',
+    lineHeight: '1.25rem',
   },
 };
 

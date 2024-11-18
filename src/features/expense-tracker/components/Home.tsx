@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
+import AddExpenseModal from './AddExpenseModal';
 
 const expenseCategories = [800, 1200, 500, 400, 600];
 const expenseChartOptions: ApexCharts.ApexOptions = {
@@ -66,9 +67,13 @@ export function Home() {
 
   return (
     <Box p={6}>
-      <Heading as="h2" size="lg" mb={6}>
-        Dashboard
-      </Heading>
+      <Flex justifyContent={'space-between'}>
+        <Heading as="h2" size="lg" mb={6}>
+          Dashboard
+        </Heading>
+
+        <AddExpenseModal />
+      </Flex>
 
       {/* Statistics Cards */}
       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={6} mb={8}>
